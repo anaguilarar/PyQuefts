@@ -7,7 +7,7 @@ name = "pyquefts"
 version = "0.1.0"
 description = "Python implementation of the QUEFTS soil fertility / nutrient-limited yield model (port of R-QUEFTS) with geospatial support"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 license = { text = "GPL-3.0-or-later" }
 authors = [{ name = "Andres Aguilar", email = "andres.aguilar@cgiar.org" }]
 keywords = ["QUEFTS", "soil fertility", "crop yield", "nutrient management", "agronomy", "geospatial"]
@@ -25,6 +25,8 @@ test = ["pytest>=7", "tabulate"]
 all = ["pyquefts[geo,plot,test]"]
 
 [project.urls]
+Homepage = "https://github.com/anaguilarar/PyQuefts"
+Repository = "https://github.com/anaguilarar/PyQuefts"
 "Reference implementation" = "https://github.com/cropmodels/Rquefts"
 "QUEFTS documentation" = "https://reagro.org/methods/explanatory/quefts.html"
 

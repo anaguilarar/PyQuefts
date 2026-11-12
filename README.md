@@ -20,10 +20,40 @@ QUEFTS (1) estimates the native N, P and K supply of a soil from a few topsoil p
 
 ## Installation
 
+Requires Python >= 3.9. The core (point simulations) depends only on NumPy, pandas and SciPy. The remote CHIRTS-ERA5 temperature store is Zarr v3 and needs `zarr >= 3` (Python >= 3.11); everything else, including local NetCDF/GeoTIFF cubes, works on 3.9.
+
+Install from GitHub (https://github.com/anaguilarar/PyQuefts):
+
 ```bash
-pip install -e ".[all]"        # from this folder; [geo] adds xarray/dask/rioxarray, [test] adds pytest
-pytest                          # 48 tests, ~30 s (set PYQUEFTS_NETWORK_TESTS=1 to also query the CHIRTS store)
+pip install "git+https://github.com/anaguilarar/PyQuefts.git"            # core only
+pip install "pyquefts[all] @ git+https://github.com/anaguilarar/PyQuefts.git"   # with geo, plot and test extras
 ```
+
+Or clone it for development (editable install):
+
+```bash
+git clone https://github.com/anaguilarar/PyQuefts.git
+cd PyQuefts
+pip install -e ".[all]"
+```
+
+Optional extras:
+
+| Extra | Adds | Needed for |
+|---|---|---|
+| `geo` | xarray, dask, netCDF4, rioxarray, rasterio, zarr | soil cubes (`pyquefts.geo`), spatial runs, CHIRTS temperature |
+| `plot` | matplotlib | `result.plot()`, `pyquefts.plot` |
+| `test` | pytest, tabulate | running the test suite |
+| `all` | all of the above | |
+
+Check the installation:
+
+```bash
+python -c "import pyquefts as pq; print(pq.__version__, pq.Quefts(crop='barley').run())"
+pytest            # from the cloned folder; set PYQUEFTS_NETWORK_TESTS=1 to also query the CHIRTS store
+```
+
+The R reference implementation is only needed to regenerate the validation data (`validation/generate_r_reference.R`, Rquefts 1.2-8).
 
 ## Quick start
 
