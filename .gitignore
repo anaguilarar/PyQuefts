@@ -1,0 +1,9 @@
+bibliography
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+tests/
+.pytest_cache/
+validation/r_reference_*.csv

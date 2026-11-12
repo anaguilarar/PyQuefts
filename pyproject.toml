@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyquefts"
+version = "0.1.0"
+description = "Python implementation of the QUEFTS soil fertility / nutrient-limited yield model (port of R-QUEFTS) with geospatial support"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Andres Aguilar", email = "andres.aguilar@cgiar.org" }]
+keywords = ["QUEFTS", "soil fertility", "crop yield", "nutrient management", "agronomy", "geospatial"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = ["numpy>=1.24", "pandas>=2.0", "scipy>=1.10"]
+
+[project.optional-dependencies]
+geo = ["xarray>=2023.1", "dask[array]>=2023.1", "netCDF4>=1.6", "rioxarray>=0.15", "rasterio>=1.3", "zarr>=2.16"]
+plot = ["matplotlib>=3.7"]
+test = ["pytest>=7", "tabulate"]
+all = ["pyquefts[geo,plot,test]"]
+
+[project.urls]
+"Reference implementation" = "https://github.com/cropmodels/Rquefts"
+"QUEFTS documentation" = "https://reagro.org/methods/explanatory/quefts.html"
+
+[tool.setuptools.packages.find]
+include = ["pyquefts*"]
+
+[tool.setuptools.package-data]
+"pyquefts.data" = ["*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
